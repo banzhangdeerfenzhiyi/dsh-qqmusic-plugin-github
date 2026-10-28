@@ -1,0 +1,18 @@
+{
+  "name": "dsh-qqmusic-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "QQ Music + RVC singing for the DeepSeek WeChat persona: the agent sings a song excerpt as a real WeChat voice bubble (AI cover in her voice).",
+  "type": "module",
+  "main": "index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "dependencies": {
+    "silk-wasm": "^3.7.1"
+  }
+}
