@@ -37,6 +37,7 @@ wechat-agent/
 
 1. **安装 WeChatAgent**：右键以管理员身份运行
    `installers/WeChatAgent-Setup-0.4.1-x64.exe`，选一个根目录（程序进 `app/`，数据进 `data/`）。
+   安装包也可以从 [GitHub Release v0.4.1-wechat-agent](https://github.com/banzhangdeerfenzhiyi/dsh-qqmusic-plugin-github/releases/tag/v0.4.1-wechat-agent) 下载（仓库内只保留 `SHA256SUMS.txt`）。
    安装包内含匹配微信 4.1.10.27 客户端与原生发送组件。
 2. **安装 DSH**：从 [DeepSeek Harness 官网](https://www.deepseek.com/harness/) 单独安装桌面版，
    登录模型账号。

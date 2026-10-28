@@ -10,9 +10,7 @@ voice bubble (SILK) or a QQ voice message.*
 
 **文档**：[使用手册 PDF](docs/教程manual.pdf) · [文件清单](FILES.md) · [安全说明](SECURITY.md)
 
-**另附**：[WeChat-Agent 整合包](wechat-agent/README.md) —— WeChatAgent 安装包（0.4.1）、DSH 接入插件、
-微信 4.1.10.27 Hook 部署脚本/教程。安装包较大（527 MB），上传 GitHub 前请看
-[wechat-agent/README.md 的说明](wechat-agent/README.md#上传到-github-前的注意事项)。
+**另附**：[WeChat-Agent 整合包](wechat-agent/README.md) —— WeChatAgent 安装包（0.4.1，[Release 下载](https://github.com/banzhangdeerfenzhiyi/dsh-qqmusic-plugin-github/releases/tag/v0.4.1-wechat-agent)）、DSH 接入插件、微信 4.1.10.27 Hook 部署脚本/教程。安装包 527 MB 放在 Releases，仓库内只保留 `SHA256SUMS.txt`。
 
 ---
 
