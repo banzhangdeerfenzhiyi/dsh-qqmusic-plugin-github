@@ -1,4 +1,4 @@
-# dsh-qqmusic-plugin
+﻿# dsh-qqmusic-plugin
 
 > 给 [DeepSeek Harness](https://github.com/deepseek-ai)（DSH）里的微信 / QQ 人格机器人
 > 加一个**真·唱歌**技能：点一首 QQ 音乐的歌，她用自己的 AI 音色翻唱一段，以
@@ -225,4 +225,5 @@ node tools/install.mjs   # 独立安装，写入 profile patch
 Paths are auto-detected and can be configured in the profile patch
 (`cordis.patch.yml` / `tools/install.mjs`). Everything runs locally; the only outbound
 traffic is to QQ Music and the local WeChat hook / NapCat.
+
 

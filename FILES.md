@@ -1,4 +1,4 @@
-# 文件清单 · dsh-qqmusic-plugin
+﻿# 文件清单 · dsh-qqmusic-plugin
 
 给 DeepSeek Harness（DSH）微信/QQ 人格机器人用的「QQ 音乐点歌 + AI 翻唱」插件。
 本文件说明每个文件的用途。
@@ -147,7 +147,7 @@ dsh-qqmusic-plugin/
 
 | 路径 | 内容 |
 |---|---|
-| `wechat-agent/installers/WeChatAgent-Setup-0.4.1-x64.exe` | 官方安装包（527 MB，SHA256 见同目录 `SHA256SUMS.txt`） |
+| wechat-agent/installers/SHA256SUMS.txt | 安装包校验值；安装包本体在 [GitHub Release v0.4.1-wechat-agent](https://github.com/banzhangdeerfenzhiyi/dsh-qqmusic-plugin-github/releases/tag/v0.4.1-wechat-agent)（527 MB） |
 | `wechat-agent/integration-plugin/dsh-social-bridge-plugin/` | DSH 接入插件（微信 ↔ DSH 会话/工具授权/任务/表情） |
 | `wechat-agent/integration-plugin/extension-runtime/` | 接入插件运行时 |
 | `wechat-agent/integration-plugin/wechat-deploy-plugin/` | 可选：Hook 检查/准备/启动/重启/构建的聊天工具 |
@@ -158,3 +158,4 @@ dsh-qqmusic-plugin/
 **上传注意**：安装包 527 MB，超过 GitHub 单文件 100 MB 限制。推荐把安装包作为
 **GitHub Release 附件**上传（单文件上限 2 GB）；或用 Git LFS（`git lfs install` 后按根目录
 `.gitattributes` 跟踪 `wechat-agent/installers/*.exe`）。
+

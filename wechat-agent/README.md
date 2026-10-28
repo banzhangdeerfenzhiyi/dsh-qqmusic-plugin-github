@@ -1,4 +1,4 @@
-# WeChat-Agent 整合包
+﻿# WeChat-Agent 整合包
 
 本目录是 [WeChatAgent](https://github.com/sourcepro5/WeChatAgent)（MIT，作者 Derpyu520 及
 qq-bridge / QSH contributors）的**安装与接入整合包**：把微信助手安装包、它的 DSH 接入插件、
@@ -72,3 +72,4 @@ wechat-agent/
 | DSH | 用户自行从 DeepSeek 官网安装，本包不分发 |
 
 完整许可见 `runtime/LICENSE`、`runtime/LICENSES.md` 与各组件的 LICENSE 文件。
+
