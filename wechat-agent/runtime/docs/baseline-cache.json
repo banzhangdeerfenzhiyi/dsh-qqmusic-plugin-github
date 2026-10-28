@@ -1,0 +1,375 @@
+{
+  "generatedAt": "2026-10-25T13:51:20.417Z",
+  "since": null,
+  "reports": [
+    {
+      "file": "C:\\Users\\Abaraxas\\.dsh\\sessions\\--C-Users-Abaraxas-.dsh-profiles-desktop--\\social-bf5eb260ef4efeb88d021b34f4349ca2\\session.v4.jsonl.zstd",
+      "title": "微信群聊｜1412964411｜示例助手",
+      "frames": 188,
+      "failedFrames": 0,
+      "unparsed": 0,
+      "surfaceNodes": 84,
+      "turns": 33,
+      "requests": 91,
+      "repairTurns": 13,
+      "assistantMessages": 33,
+      "freshInput": 139631,
+      "cacheRead": 313344,
+      "overallHitRate": 69.2,
+      "normalHitRate": 49.4,
+      "rows": [
+        {
+          "turn": 14,
+          "fresh": 8574,
+          "cached": 0,
+          "output": 30,
+          "hitRate": 0,
+          "repair": false,
+          "time": 1792935539924
+        },
+        {
+          "turn": 15,
+          "fresh": 266,
+          "cached": 8576,
+          "output": 15,
+          "hitRate": 97,
+          "repair": true,
+          "time": 1792935541090
+        },
+        {
+          "turn": 16,
+          "fresh": 3768,
+          "cached": 5504,
+          "output": 120,
+          "hitRate": 59.4,
+          "repair": false,
+          "time": 1792935557940
+        },
+        {
+          "turn": 17,
+          "fresh": 3942,
+          "cached": 5632,
+          "output": 40,
+          "hitRate": 58.8,
+          "repair": false,
+          "time": 1792935576009
+        },
+        {
+          "turn": 18,
+          "fresh": 375,
+          "cached": 9472,
+          "output": 10,
+          "hitRate": 96.2,
+          "repair": true,
+          "time": 1792935578655
+        },
+        {
+          "turn": 19,
+          "fresh": 4595,
+          "cached": 5504,
+          "output": 4,
+          "hitRate": 54.5,
+          "repair": false,
+          "time": 1792935596776
+        },
+        {
+          "turn": 20,
+          "fresh": 4714,
+          "cached": 5632,
+          "output": 55,
+          "hitRate": 54.4,
+          "repair": false,
+          "time": 1792935600590
+        },
+        {
+          "turn": 21,
+          "fresh": 401,
+          "cached": 10240,
+          "output": 18,
+          "hitRate": 96.2,
+          "repair": true,
+          "time": 1792935601999
+        },
+        {
+          "turn": 22,
+          "fresh": 923,
+          "cached": 9984,
+          "output": 4,
+          "hitRate": 91.5,
+          "repair": false,
+          "time": 1792935620033
+        },
+        {
+          "turn": 23,
+          "fresh": 5519,
+          "cached": 5632,
+          "output": 126,
+          "hitRate": 50.5,
+          "repair": false,
+          "time": 1792935649065
+        },
+        {
+          "turn": 24,
+          "fresh": 5812,
+          "cached": 5632,
+          "output": 69,
+          "hitRate": 49.2,
+          "repair": false,
+          "time": 1792935674202
+        },
+        {
+          "turn": 25,
+          "fresh": 6055,
+          "cached": 5632,
+          "output": 130,
+          "hitRate": 48.2,
+          "repair": false,
+          "time": 1792935727614
+        },
+        {
+          "turn": 26,
+          "fresh": 406,
+          "cached": 11648,
+          "output": 14,
+          "hitRate": 96.6,
+          "repair": true,
+          "time": 1792935729556
+        },
+        {
+          "turn": 27,
+          "fresh": 1437,
+          "cached": 10880,
+          "output": 4,
+          "hitRate": 88.3,
+          "repair": false,
+          "time": 1792935772196
+        },
+        {
+          "turn": 28,
+          "fresh": 6933,
+          "cached": 5632,
+          "output": 163,
+          "hitRate": 44.8,
+          "repair": false,
+          "time": 1792935809296
+        },
+        {
+          "turn": 29,
+          "fresh": 432,
+          "cached": 12544,
+          "output": 25,
+          "hitRate": 96.7,
+          "repair": true,
+          "time": 1792935811636
+        },
+        {
+          "turn": 30,
+          "fresh": 975,
+          "cached": 12288,
+          "output": 4,
+          "hitRate": 92.6,
+          "repair": false,
+          "time": 1792935846934
+        },
+        {
+          "turn": 31,
+          "fresh": 8030,
+          "cached": 5632,
+          "output": 89,
+          "hitRate": 41.2,
+          "repair": false,
+          "time": 1792935849888
+        },
+        {
+          "turn": 32,
+          "fresh": 422,
+          "cached": 13568,
+          "output": 16,
+          "hitRate": 97,
+          "repair": true,
+          "time": 1792935851294
+        },
+        {
+          "turn": 33,
+          "fresh": 8805,
+          "cached": 5504,
+          "output": 55,
+          "hitRate": 38.5,
+          "repair": false,
+          "time": 1792935871075
+        },
+        {
+          "turn": 34,
+          "fresh": 287,
+          "cached": 14336,
+          "output": 12,
+          "hitRate": 98,
+          "repair": true,
+          "time": 1792935873377
+        },
+        {
+          "turn": 35,
+          "fresh": 9165,
+          "cached": 5632,
+          "output": 78,
+          "hitRate": 38.1,
+          "repair": false,
+          "time": 1792935892375
+        },
+        {
+          "turn": 36,
+          "fresh": 390,
+          "cached": 14720,
+          "output": 12,
+          "hitRate": 97.4,
+          "repair": true,
+          "time": 1792935894615
+        },
+        {
+          "turn": 37,
+          "fresh": 3027,
+          "cached": 13184,
+          "output": 191,
+          "hitRate": 81.3,
+          "repair": false,
+          "time": 1792935914679
+        },
+        {
+          "turn": 38,
+          "fresh": 1849,
+          "cached": 14976,
+          "output": 16,
+          "hitRate": 89,
+          "repair": true,
+          "time": 1792935917884
+        },
+        {
+          "turn": 39,
+          "fresh": 10782,
+          "cached": 5632,
+          "output": 78,
+          "hitRate": 34.3,
+          "repair": false,
+          "time": 1792935936067
+        },
+        {
+          "turn": 40,
+          "fresh": 346,
+          "cached": 16384,
+          "output": 15,
+          "hitRate": 97.9,
+          "repair": true,
+          "time": 1792935937451
+        },
+        {
+          "turn": 41,
+          "fresh": 12858,
+          "cached": 5632,
+          "output": 132,
+          "hitRate": 30.5,
+          "repair": false,
+          "time": 1792936146959
+        },
+        {
+          "turn": 42,
+          "fresh": 372,
+          "cached": 18560,
+          "output": 15,
+          "hitRate": 98,
+          "repair": true,
+          "time": 1792936151287
+        },
+        {
+          "turn": 43,
+          "fresh": 13506,
+          "cached": 5504,
+          "output": 169,
+          "hitRate": 29,
+          "repair": false,
+          "time": 1792936180994
+        },
+        {
+          "turn": 44,
+          "fresh": 476,
+          "cached": 18944,
+          "output": 18,
+          "hitRate": 97.5,
+          "repair": true,
+          "time": 1792936183558
+        },
+        {
+          "turn": 45,
+          "fresh": 13802,
+          "cached": 5504,
+          "output": 45,
+          "hitRate": 28.5,
+          "repair": false,
+          "time": 1792936205245
+        },
+        {
+          "turn": 46,
+          "fresh": 387,
+          "cached": 19200,
+          "output": 13,
+          "hitRate": 98,
+          "repair": true,
+          "time": 1792936207538
+        }
+      ]
+    },
+    {
+      "file": "C:\\Users\\Abaraxas\\.dsh\\sessions\\--C-Users-Abaraxas-.dsh-profiles-desktop--\\social-5a5fc59d77e64e0bcf00f60711c108ec\\session.v4.jsonl.zstd",
+      "title": "微信私聊｜1125286184｜示例助手",
+      "frames": 40,
+      "failedFrames": 0,
+      "unparsed": 0,
+      "surfaceNodes": 19,
+      "turns": 4,
+      "requests": 13,
+      "repairTurns": 0,
+      "assistantMessages": 4,
+      "freshInput": 8261,
+      "cacheRead": 23296,
+      "overallHitRate": 73.8,
+      "normalHitRate": 73.8,
+      "rows": [
+        {
+          "turn": 7,
+          "fresh": 6764,
+          "cached": 640,
+          "output": 476,
+          "hitRate": 8.6,
+          "repair": false,
+          "time": 1792935793581
+        },
+        {
+          "turn": 8,
+          "fresh": 1048,
+          "cached": 6784,
+          "output": 82,
+          "hitRate": 86.6,
+          "repair": false,
+          "time": 1792935844480
+        },
+        {
+          "turn": 9,
+          "fresh": 254,
+          "cached": 7808,
+          "output": 41,
+          "hitRate": 96.8,
+          "repair": false,
+          "time": 1792936011815
+        },
+        {
+          "turn": 10,
+          "fresh": 195,
+          "cached": 8064,
+          "output": 14,
+          "hitRate": 97.6,
+          "repair": false,
+          "time": 1792936027294
+        }
+      ]
+    }
+  ]
+}

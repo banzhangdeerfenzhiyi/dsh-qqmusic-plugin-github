@@ -1,0 +1,26 @@
+# dsh-qqmusic-plugin — bundle patch
+#
+# Recommended installation is `node tools/install.mjs`, which writes an explicit
+# insert entry with auto-detected paths into your profile patch.
+#
+# This file is the alternative "install as a bundle" route:
+#   dsh plugin --profile desktop add /path/to/dsh-qqmusic-plugin
+#
+# Paths are auto-detected at runtime (RVC_ROOT env → ~/rvc → ~/Documents/rvc,
+# WECHATAGENT_WORKSPACE env → ~/Documents/data/workspace, ...). Anything that
+# cannot be detected can be uncommented and set here.
+- insert:
+    - id: dsh-qqmusic
+      name: 'dsh-qqmusic-plugin'
+      config:
+        enabled: true
+        promptEnabled: true
+        # rvcRoot: 'D:/rvc'                   # folder containing applio/core.py
+        # workspace: 'D:/wa'                  # WeChatAgent workspace
+        model: 'Paimon'
+        autoPitch: true
+        defaultSeconds: 30
+        maxSeconds: 45
+        hookUrl: 'http://127.0.0.1:30001'
+        autoSingEnabled: true
+        authEnabled: true

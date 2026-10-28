@@ -1,0 +1,23 @@
+{
+    "name":  "dsh-voicepack-plugin",
+    "version":  "0.1.0",
+    "private":  true,
+    "description":  "Voice pack for the WeChat persona: 30+ Edge neural voices (common new female voices, male voices, dialects, HK/TW) plus optional RVC timbres, sent as native WeChat voice bubbles.",
+    "type":  "module",
+    "main":  "index.mjs",
+    "exports":  {
+                    ".":  "./index.mjs",
+                    "./package.json":  "./package.json"
+                },
+    "engines":  {
+                    "node":  "\u003e=22.13.0"
+                },
+    "scripts":  {
+                    "test":  "node test/unit.test.mjs \u0026\u0026 node test/apply.test.mjs"
+                },
+    "dependencies":  {
+                         "mpg123-decoder":  "^1.0.3",
+                         "msedge-tts":  "^2.1.1",
+                         "silk-wasm":  "^3.7.1"
+                     }
+}

@@ -1,0 +1,3 @@
+﻿# The WeChatAgent installer (527 MB) is distributed as a GitHub Release asset
+# because it exceeds GitHub's 100 MB per-file limit. wechat-agent/installers/*.exe
+# is therefore git-ignored; keep SHA256SUMS.txt in the repository.

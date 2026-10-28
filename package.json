@@ -1,0 +1,65 @@
+﻿{
+    "name":  "dsh-qqmusic-plugin",
+    "version":  "0.1.0",
+    "private":  false,
+    "description":  "QQ Music karaoke + AI cover singing for DeepSeek Harness WeChat/QQ persona bots: search a song, split vocals with Demucs, convert the voice with RVC, mix and send a real voice bubble (WeChat SILK) or a QQ record.",
+    "type":  "module",
+    "main":  "index.mjs",
+    "exports":  {
+                    ".":  "./index.mjs",
+                    "./package.json":  "./package.json"
+                },
+    "files":  [
+                  "index.mjs",
+                  "src/",
+                  "python/",
+                  "tools/",
+                  "docs/",
+                  "README.md",
+                  "FILES.md",
+                  "LICENSE",
+                  "SECURITY.md",
+                  "cordis.patch.yml",
+                  "voicepack/"
+              ],
+    "scripts":  {
+                    "test":  "node test/unit.test.mjs \u0026\u0026 node test/apply.test.mjs \u0026\u0026 node test/autosing.test.mjs",
+                    "test:network":  "QQMUSIC_NETWORK_TEST=1 node test/unit.test.mjs",
+                    "test:concurrent":  "node test/concurrent-render.test.mjs",
+                    "install-plugin":  "node tools/install.mjs",
+                    "live":  "node tools/live-sing.mjs"
+                },
+    "keywords":  [
+                     "deepseek-harness",
+                     "dsh",
+                     "dsh-plugin",
+                     "qqmusic",
+                     "rvc",
+                     "singing",
+                     "voice",
+                     "wechat",
+                     "qq",
+                     "karaoke"
+                 ],
+    "author":  "banzhangdeerfenzhiyi (https://github.com/banzhangdeerfenzhiyi)",
+    "license":  "MIT",
+    "repository":  {
+                       "type":  "git",
+                       "url":  "git+https://github.com/banzhangdeerfenzhiyi/dsh-qqmusic-plugin-github.git"
+                   },
+    "bugs":  {
+                 "url":  "https://github.com/banzhangdeerfenzhiyi/dsh-qqmusic-plugin-github/issues"
+             },
+    "homepage":  "https://github.com/banzhangdeerfenzhiyi/dsh-qqmusic-plugin-github#readme",
+    "engines":  {
+                    "node":  "\u003e=22.13.0"
+                },
+    "dependencies":  {
+                         "silk-wasm":  "^3.7.1"
+                     },
+    "dsh":  {
+                "bundle":  {
+                               "patch":  "./cordis.patch.yml"
+                           }
+            }
+}

@@ -1,0 +1,23 @@
+﻿# runtime artefacts — never commit these
+node_modules/
+.work/
+.qr/
+*.log
+qqmusic-cache/
+
+# The 527 MB WeChatAgent installer is a GitHub Release asset, not repository content.
+wechat-agent/installers/*.exe
+
+# local config / secrets
+.env
+.env.*
+config.local.json
+cookie.json
+*.cookie
+
+# editor / OS noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

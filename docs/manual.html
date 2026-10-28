@@ -1,0 +1,589 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>dsh-qqmusic-plugin 使用手册</title>
+<style>
+  @page { size: A4; margin: 17mm 16mm 17mm 16mm; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+    font-size: 10.4pt; line-height: 1.72; color: #1f2328;
+  }
+  h1, h2, h3, h4 { line-height: 1.35; margin: 0; }
+  h1 { font-size: 22pt; }
+  h2 {
+    font-size: 15.5pt; color: #0b5cad; margin: 0 0 10px;
+    padding-bottom: 5px; border-bottom: 2px solid #d6e6f7;
+    page-break-after: avoid;
+  }
+  h3 { font-size: 12.2pt; color: #123f6d; margin: 16px 0 6px; page-break-after: avoid; }
+  h4 { font-size: 10.8pt; color: #24435f; margin: 12px 0 4px; page-break-after: avoid; }
+  p { margin: 6px 0; }
+  ul, ol { margin: 5px 0 8px; padding-left: 22px; }
+  li { margin: 2.5px 0; }
+  code, .mono {
+    font-family: "Cascadia Mono", Consolas, "Courier New", monospace;
+    font-size: 9.1pt; background: #f2f4f7; border-radius: 3px; padding: 0 3px;
+  }
+  pre {
+    font-family: "Cascadia Mono", Consolas, "Courier New", monospace;
+    font-size: 8.9pt; line-height: 1.55; background: #f6f8fa;
+    border: 1px solid #e3e8ee; border-left: 3px solid #7aa7d4;
+    border-radius: 4px; padding: 8px 10px; margin: 8px 0;
+    white-space: pre-wrap; word-break: break-all;
+    page-break-inside: avoid;
+  }
+  .section { page-break-before: always; }
+  .cover { page-break-after: always; padding-top: 26mm; }
+  .cover .tag {
+    display: inline-block; font-size: 9.5pt; letter-spacing: 2px; color: #0b5cad;
+    border: 1px solid #b9d4ee; background: #eef6ff; border-radius: 20px;
+    padding: 3px 14px; margin-bottom: 18px;
+  }
+  .cover h1 { font-size: 27pt; color: #10365c; letter-spacing: 1px; }
+  .cover .sub { font-size: 13pt; color: #456; margin-top: 10px; }
+  .cover .meta {
+    margin-top: 26mm; font-size: 10pt; color: #4a5560;
+    border-top: 1px solid #dde3ea; padding-top: 12px; width: 72%;
+  }
+  .cover .meta div { margin: 4px 0; }
+  .toc { page-break-after: always; }
+  .toc h2 { margin-bottom: 14px; }
+  .toc ol { list-style: none; padding-left: 0; counter-reset: toc; }
+  .toc li {
+    counter-increment: toc; padding: 5px 0 5px 34px; position: relative;
+    border-bottom: 1px dashed #e2e7ee; font-size: 11pt;
+  }
+  .toc li::before {
+    content: counter(toc); position: absolute; left: 0; top: 5px;
+    width: 22px; text-align: right; color: #0b5cad; font-weight: 700;
+  }
+  .toc li small { display: block; color: #7a8794; font-size: 9pt; }
+  table { width: 100%; border-collapse: collapse; margin: 9px 0 12px; font-size: 9.4pt; }
+  th, td { border: 1px solid #dbe2ea; padding: 5px 7px; text-align: left; vertical-align: top; }
+  th { background: #eef4fb; color: #123f6d; font-weight: 700; }
+  tr { page-break-inside: avoid; }
+  td.file { font-family: "Cascadia Mono", Consolas, monospace; font-size: 8.9pt; white-space: nowrap; }
+  .note, .warn, .tip {
+    border-radius: 5px; padding: 8px 11px; margin: 9px 0; font-size: 9.7pt;
+    page-break-inside: avoid;
+  }
+  .note { background: #f3f7fb; border-left: 3px solid #7aa7d4; }
+  .tip { background: #f1f9f2; border-left: 3px solid #58a86b; }
+  .warn { background: #fff7ec; border-left: 3px solid #e0a537; }
+  .note b, .tip b, .warn b { color: #123f6d; }
+  .flow { margin: 12px 0; page-break-inside: avoid; }
+  .flow-step {
+    border: 1px solid #cfe0f2; border-left: 4px solid #3f7fc4; background: #fafcff;
+    border-radius: 5px; padding: 7px 10px; margin: 5px 0; font-size: 9.6pt;
+  }
+  .flow-step b { color: #0b5cad; }
+  .cols { display: flex; gap: 12px; page-break-inside: avoid; }
+  .cols > div { flex: 1; }
+  .kv { font-size: 9.8pt; }
+  footer.sign { margin-top: 18px; font-size: 9pt; color: #8a94a0; text-align: right; }
+  .small { font-size: 9pt; color: #5d6a76; }
+</style>
+</head>
+<body>
+
+<!-- ============================ 封面 ============================ -->
+<section class="cover">
+  <div class="tag">DEEPSEEK HARNESS 插件 · 微信 / QQ 双端</div>
+  <h1>dsh-qqmusic-plugin</h1>
+  <div class="sub">QQ 音乐点歌 + AI 翻唱：让她真的开口唱歌</div>
+  <div class="meta">
+    <div>文档名称：使用手册 &amp; 文件说明</div>
+    <div>插件版本：v0.9（整理版）</div>
+    <div>生成日期：2026-10-28</div>
+    <div>运行环境：Windows 10/11 · DeepSeek Harness · WeChatAgent hook / NapCat OneBot · NVIDIA GPU（8GB 显存即可）</div>
+    <div>文档内容：插件原理、文件说明、安装配置、微信与 QQ 双端教程、会员登录、排错与测试</div>
+  </div>
+</section>
+
+<!-- ============================ 目录 ============================ -->
+<section class="toc">
+  <h2>目录</h2>
+  <ol>
+    <li>插件简介 <small>它解决什么问题、能做什么、和现有语音插件的关系</small></li>
+    <li>工作原理 <small>从一句「唱首晴天」到微信/QQ 里一条完整语音条的全链路</small></li>
+    <li>环境要求 <small>系统、显卡、Python/RVC 环境、DSH、微信 hook 与 QQ 桥</small></li>
+    <li>快速开始 <small>五步装好并验证</small></li>
+    <li>文件说明 <small>每个目录与文件是干什么用的</small></li>
+    <li>配置说明 <small>profile patch 里的全部配置项</small></li>
+    <li>使用教程 · 微信端 <small>触发规则、三种模式、自动兜底、找不到歌时</small></li>
+    <li>使用教程 · QQ 端 <small>给 qq-fish 插件打补丁、触发方式、限制</small></li>
+    <li>QQ 音乐会员登录 <small>零操作内存提取 / 扫码 / 手动 cookie，以及如何验证</small></li>
+    <li>运维与排错 <small>日志位置、常见问题表、已修复的坑</small></li>
+    <li>测试与验证 <small>本地测试、联调脚本</small></li>
+    <li>安全、隐私与已知限制 <small>cookie 只存本机、版权与使用边界</small></li>
+    <li>附录 A · 文件速查表 <small>一页纸版本</small></li>
+  </ol>
+</section>
+
+<!-- ============================ 1 简介 ============================ -->
+<section class="section">
+  <h2>1 · 插件简介</h2>
+  <p>
+    <b>dsh-qqmusic-plugin</b> 是给 DeepSeek Harness（DSH）里的「她」——微信/QQ 上那个有人格的机器人——
+    加的一个真·唱歌技能。用户在聊天里说一句「唱首晴天」，插件会从 QQ 音乐找歌、截一段副歌，
+    用 RVC 把原唱的人声换成她自己的 AI 音色，再混回原曲伴奏，最后以<b>真实语音条</b>发出来。
+  </p>
+  <h3>能做什么</h3>
+  <ul>
+    <li><b>点歌翻唱（cover）</b>：默认模式，她的音色 + 原曲伴奏，默认 30 秒（8~45 秒可调）。</li>
+    <li><b>原声片段（original）</b>：直接放原唱的一小段，2~3 秒出结果，适合只想听一段原曲。</li>
+    <li><b>清唱（acapella）</b>：去掉伴奏，只留她的声音。</li>
+    <li><b>会员音源</b>：接入 QQ 音乐账号后，会员歌/320k 音源也能用；没有会员则自动用免费档。</li>
+    <li><b>自动兜底</b>：长群里模型容易“嘴上说唱、实际不调用工具”，插件会自己接管把唱完。</li>
+    <li><b>找不到歌时</b>：自动用她的声音发语音说「我不知道你说的歌怎么唱哦」。</li>
+  </ul>
+  <h3>和已有语音插件的关系</h3>
+  <p>
+    微信侧语音条通道（iLink / WeChatAgent hook）和 TTS 发声能力由现有的
+    <code>dsh-wechatagent-voice-plugin</code> 提供；本插件<b>不重复造轮子</b>：发语音条复用同一套
+    本机 hook，只在“找不到歌要道歉”时借用它的 Edge TTS。两者在同一套「扩展工具白名单」里合并，
+    互不顶掉。
+  </p>
+  <div class="note">
+    <b>一句话理解：</b>语音插件负责「说话」，本插件负责「唱歌」。唱歌比说话重得多——它依赖
+    本机 GPU 上的 Demucs + RVC 流水线，第一次点一首歌大约 40~90 秒，之后同一首走缓存会快很多。
+  </div>
+</section>
+
+<!-- ============================ 2 原理 ============================ -->
+<section class="section">
+  <h2>2 · 工作原理</h2>
+  <p>一次点歌的完整链路（微信与 QQ 共用前半段，只有最后“怎么发出去”不同）：</p>
+  <div class="flow">
+    <div class="flow-step"><b>① 解析请求</b>　模型调用 <code>sing_song</code>，或宿主兜底从聊天文本里抽歌名（如「唱首晴天」→ 晴天）</div>
+    <div class="flow-step"><b>② QQ 音乐搜索</b>　非官方网页接口搜索；<code>matchScore</code> 判断“搜出来的像不像这首歌”，不像就当作没找到</div>
+    <div class="flow-step"><b>③ 解析播放地址</b>　vkey 接口按会员/免费档依次尝试 M800(320k) → M500(128k) → C400(128k AAC)，下载到本机缓存</div>
+    <div class="flow-step"><b>④ 截取片段</b>　ffmpeg 取副歌附近 30 秒（优先用 QQ 音乐自己的 30 秒试听窗口，其次取全曲 40% 处）</div>
+    <div class="flow-step"><b>⑤ 分轨（GPU）</b>　Demucs htdemucs 把人声与伴奏分离成两个 wav</div>
+    <div class="flow-step"><b>⑥ 自动变调</b>　librosa.pyin 估原唱人声中位音高，按 <code>12·log2(targetF0/f0)</code> 算变调半音数</div>
+    <div class="flow-step"><b>⑦ 音色转换（GPU）</b>　RVC（Applio）把人声换成目标音色（默认 Paimon，可换）</div>
+    <div class="flow-step"><b>⑧ 混音母带</b>　ffmpeg 把她的声音与原曲伴奏混合，EQ/压缩/loudnorm 处理</div>
+    <div class="flow-step"><b>⑨ 编码</b>　转 24kHz 单声道 PCM：微信侧再编码成 <b>SILK</b> 语音条；QQ 侧同时产出 <b>MP3</b> 交给 NapCat 转码</div>
+    <div class="flow-step"><b>⑩ 发送</b>　微信：本机 WeChatAgent hook <code>/SendVoiceMsg</code>；QQ：OneBot <code>record</code> 消息</div>
+  </div>
+  <h3>缓存与并发</h3>
+  <ul>
+    <li>所有中间文件按歌曲 mid 落盘（默认 <code>D:/…/rvc/songs/qqmusic/&lt;songmid&gt;/</code>），重复点同一首只重跑变化的部分。</li>
+    <li>同一首歌被多个群/QQ 同时点时会<b>串行渲染</b>，后到的直接复用结果——避免两条流水线抢同一个中间文件、产出被截断的短语音（曾经出现过“怎么只有 6 秒”的问题，已修复并有回归测试）。</li>
+    <li>缓存完整性按“请求秒数 × 音频字节率”校验，不完整的文件会被删除重建。</li>
+  </ul>
+</section>
+
+<!-- ============================ 3 环境 ============================ -->
+<section class="section">
+  <h2>3 · 环境要求</h2>
+  <table>
+    <tr><th style="width:26%">项目</th><th>要求</th></tr>
+    <tr><td>操作系统</td><td>Windows 10/11 x64（当前实现依赖 Windows 的本机 hook 与内存读取工具）</td></tr>
+    <tr><td>DSH</td><td>DeepSeek Harness（桌面版），本机已装 profile <code>desktop</code></td></tr>
+    <tr><td>GPU</td><td>NVIDIA 显卡，显存 ≥ 8GB（Demucs + RVC 推理；纯 CPU 会很慢）</td></tr>
+    <tr><td>RVC 环境</td><td>一个可用的 RVC 目录，包含：<code>venv312</code>（torch cu128、demucs、soundfile、librosa、faiss）、<code>applio</code>（含 core.py、ffmpeg.exe）、<code>models</code>（.pth + .index 音色模型）</td></tr>
+    <tr><td>微信通道</td><td>WeChatAgent 本机 hook（默认 <code>http://127.0.0.1:30001</code>）及其工作区（会话映射、token）</td></tr>
+    <tr><td>QQ 通道（可选）</td><td>qq-fish 插件（<code>dsh-xingzhudafeiyu-home</code>）+ NapCat OneBot（默认 <code>ws://127.0.0.1:3001</code>）</td></tr>
+    <tr><td>QQ 音乐账号（可选）</td><td>登录过 QQ 音乐的 Windows 客户端，或扫码/粘贴 cookie；没有账号也能用免费档</td></tr>
+  </table>
+  <div class="warn">
+    <b>为什么需要 RVC 环境：</b>“她的声音”来自 RVC 音色转换，模型是外部资产，插件不负责训练。
+    换音色只需在配置里改 <code>model</code>/<code>models</code>（内置 Paimon / DaFeiYu / Ying 三个位置，路径可按需覆写）。
+  </div>
+</section>
+
+<!-- ============================ 4 快速开始 ============================ -->
+<section class="section">
+  <h2>4 · 快速开始</h2>
+  <ol>
+    <li>
+      <b>摆放插件源码</b>：把本文件夹放到任意位置（例如 <code>&lt;你的目录&gt;/dsh-qqmusic-plugin</code>），下面的命令都在这个目录里执行。
+    </li>
+    <li>
+      <b>安装依赖（仅一个）</b>：
+      <p>唯一运行依赖是 <code>silk-wasm</code>（微信 SILK 语音条编码，WASM 实现，无需编译）。</p>
+      唯一运行依赖是 <code>silk-wasm</code>（微信 SILK 语音条编码，WASM 实现，无需编译）。
+    </li>
+    <li>
+      <b>装进 DSH profile</b>：
+      <pre>node tools/install.mjs</pre>
+      它会自动探测本机的 RVC 目录与 WeChatAgent 工作区；探测不到时可用
+      <code>--rvc-root &lt;path&gt;</code> / <code>--workspace &lt;path&gt;</code> 显式指定，
+      也可以指定 <code>--profile</code>。
+      会把插件复制到 <code>&lt;DSH_HOME&gt;/dsh-qqmusic-plugin</code>，并往
+      <code>profiles/desktop/cordis.patch.yml</code> 写一段带标记的 insert 配置（同时自动备份 patch 文件）。
+    </li>
+    <li>
+      <b>重启 DeepSeek Harness</b>：host 插件只在启动时加载；重启后日志
+      <code>~/.dsh/qqmusic/qqmusic.log</code> 会出现 <code>apply: registered sing_song, qq_music_search</code>。
+    </li>
+    <li>
+      <b>验证</b>：微信里对她说「唱首稻香」。首次约 40~90 秒，之后同一首很快。
+      也可以不经过聊天直接联调：
+      <pre>node tools/live-sing.mjs --keyword "稻香" --mode original --seconds 8</pre>
+    </li>
+  </ol>
+  <div class="tip">
+    <b>只想先看效果？</b>用 <code>--mode original</code> 最快（2~3 秒出结果，不跑 GPU 分轨与音色转换）；
+    <code>--send</code> 可直发一条到微信聊天，验证整条发送链路。
+  </div>
+</section>
+
+<!-- ============================ 5 文件说明 ============================ -->
+<section class="section">
+  <h2>5 · 文件说明</h2>
+  <p>共 36 个文件（纯源码 + 文档，不含 <code>node_modules</code> 与运行期缓存）。</p>
+
+  <h3>根目录</h3>
+  <table>
+    <tr><th style="width:20%">文件</th><th>用途</th></tr>
+    <tr><td class="file">index.mjs</td><td>Cordis 插件入口：解析配置、注册
+      <code>sing_song</code> / <code>qq_music_search</code> 两个工具、注入「唱歌规则」系统提示、
+      给微信人格会话合并工具白名单、挂 <code>session/event</code> 自动兜底。⚠️ 默认路径含本机目录</td></tr>
+    <tr><td class="file">package.json</td><td>包名、版本、<code>type: module</code>、运行依赖
+      <code>silk-wasm</code>、DSH bundle patch 声明</td></tr>
+    <tr><td class="file">README.md</td><td>安装、配置项表格、工具参数、行为说明、限制（微信 + QQ 两套）</td></tr>
+    <tr><td class="file">FILES.md</td><td>文件清单详解（本手册第 5 章的完整版）</td></tr>
+    <tr><td class="file">LICENSE / SECURITY.md / .gitignore</td><td>MIT 许可证 / 数据流向与漏洞上报 / 忽略运行期产物</td></tr>
+    <tr><td class="file">cordis.patch.yml</td><td>bundle 安装方式的 insert 模板（与 install.mjs 二选一）</td></tr>
+    <tr><td class="file">docs/manual.pdf / docs/manual.html</td><td>本手册（18 页 A4）及其 HTML 源文件</td></tr>
+  </table>
+
+  <h3>src/ — 运行时核心</h3>
+  <table>
+    <tr><th style="width:22%">文件</th><th>用途</th></tr>
+    <tr><td class="file">qqmusic.mjs</td><td>QQ 音乐非官方接口：搜索、vkey 解析（320k/128k/m4a 多档）、下载、歌词；
+      <code>matchScore</code> 歌名相似度防止“搜到什么唱什么”；<code>rankCandidates</code> 在有会员时优先原唱/母带版本</td></tr>
+    <tr><td class="file">qqauth.mjs</td><td>会员登录态：读取
+      <code>~/.dsh/qqmusic/cookie.json</code>，生成请求用 Cookie 头；支持完整 cookie 原文</td></tr>
+    <tr><td class="file">singing.mjs</td><td><b>翻唱流水线</b>：搜索→下载→截段→Demucs→RVC→混音→24k PCM→SILK/MP3；
+      含同曲渲染互斥锁、按真实时长校验缓存、时长不足自动重渲（核心文件，逻辑最重）</td></tr>
+    <tr><td class="file">media.mjs</td><td>ffmpeg / Python 子进程封装（带超时与错误摘要）：截取、混音、转 24k PCM、PCM→MP3、时长探测</td></tr>
+    <tr><td class="file">voice.mjs</td><td>PCM → 微信 SILK 语音条编码（silk-wasm）</td></tr>
+    <tr><td class="file">wechat.mjs</td><td>DSH 会话 id → 微信聊天 → wxid 映射，调本机 hook 发原生语音条</td></tr>
+    <tr><td class="file">voice-fallback.mjs</td><td>找不到歌时借用 <code>dsh-wechatagent-voice-plugin</code> 的 Edge TTS
+      说「我不知道你说的歌怎么唱哦」⚠️ 依赖另一个本地插件</td></tr>
+    <tr><td class="file">autosing.mjs</td><td>微信端自动兜底：消息含「唱+歌名」而模型没调用工具时，宿主自己接管；
+      含歌名抽取、每会话 90 秒节流、非歌名短语过滤</td></tr>
+    <tr><td class="file">log.mjs</td><td>追加式日志（<code>~/.dsh/qqmusic/qqmusic.log</code>）与错误信息提取</td></tr>
+  </table>
+
+  <h3>python/ — 交给 RVC 虚拟环境执行</h3>
+  <table>
+    <tr><th style="width:22%">文件</th><th>用途</th></tr>
+    <tr><td class="file">separate.py</td><td>Demucs <code>htdemucs</code> 分出人声/伴奏；输出同目录
+      <code>.vocals.wav</code> / <code>.accompaniment.wav</code>；GPU 加速</td></tr>
+    <tr><td class="file">convert.py</td><td>调 Applio <code>core.py infer</code> 做 RVC 音色转换（f0=rmvpe、contentvec）</td></tr>
+    <tr><td class="file">f0.py</td><td><code>librosa.pyin</code> 估原唱中位音高，供自动变调使用</td></tr>
+  </table>
+
+  <h3>tools/ — 安装与运维（不参与运行时）</h3>
+  <table>
+    <tr><th style="width:22%">文件</th><th>用途</th></tr>
+    <tr><td class="file">install.mjs</td><td>复制插件到 <code>&lt;DSH_HOME&gt;</code> 并写 profile patch；支持 <code>--remove</code> 卸载</td></tr>
+    <tr><td class="file">lift-cookie.mjs</td><td>从正在运行的 QQ 音乐 Windows 客户端<b>内存</b>里提取登录态（零操作），写
+      <code>cookie.json</code></td></tr>
+    <tr><td class="file">qq-lift-cookie.ps1</td><td>上面的 PowerShell 实现（全 ASCII 输出，规避 Windows 脚本编码问题）</td></tr>
+    <tr><td class="file">QqMemScan.cs</td><td>内存扫描的 C# 辅助类（P/Invoke <code>VirtualQueryEx</code>/<code>ReadProcessMemory</code>）</td></tr>
+    <tr><td class="file">qq-login.mjs</td><td>QQ 互联扫码登录 → 换取 <code>qqmusic_key</code>（QQ 账号路径，备用）</td></tr>
+    <tr><td class="file">qq-status.mjs</td><td>用给定 cookie 实际解析并下载一首会员歌，判断账号有没有会员；同时打印会员接口原始数据</td></tr>
+    <tr><td class="file">live-sing.mjs</td><td>绕过 DSH 直接跑一次渲染；<code>--send</code> 可直发语音条；<code>--mode</code>/<code>--seconds</code> 可调</td></tr>
+    <tr><td class="file">patch-qqfish.mjs</td><td>给 QQ 侧 <code>dsh-xingzhudafeiyu-home</code> 插件插入「点歌快速路径」；
+      自动备份，支持 <code>--check</code> / <code>--remove</code></td></tr>
+    <tr><td class="file">qqfish-sing.mjs</td><td>补丁写入 qq-fish 的 <code>lib/sing.mjs</code> 模板：懒加载本插件渲染，产出可发送的 mp3</td></tr>
+  </table>
+
+  <h3>test/ — 本地测试</h3>
+  <table>
+    <tr><th style="width:26%">文件</th><th>覆盖内容</th></tr>
+    <tr><td class="file">unit.test.mjs</td><td>歌名匹配/排序/选段/配置解析（<code>QQMUSIC_NETWORK_TEST=1</code> 加联网搜索）</td></tr>
+    <tr><td class="file">apply.test.mjs</td><td>用假 ctx 调 <code>apply()</code>：工具注册、hook、策略合并、规则注入</td></tr>
+    <tr><td class="file">autosing.test.mjs</td><td>歌名抽取 + 自动兜底状态机 + 节流</td></tr>
+    <tr><td class="file">notfound.test.mjs</td><td>「找不到歌 → 语音道歉」端到端（<code>--send</code> 真发）</td></tr>
+    <tr><td class="file">concurrent-render.test.mjs</td><td>并发点同一首歌不再产生截断语音（回归测试）</td></tr>
+  </table>
+</section>
+
+<!-- ============================ 6 配置 ============================ -->
+<section class="section">
+  <h2>6 · 配置说明</h2>
+  <p>
+    配置写在 profile patch（<code>~/.dsh/profiles/desktop/cordis.patch.yml</code>）的 insert 条目里，
+    修改后需重启 DSH 生效。常用项如下（完整默认值见 <code>index.mjs</code> 顶部）：
+  </p>
+  <table>
+    <tr><th style="width:24%">字段</th><th style="width:26%">默认</th><th>说明</th></tr>
+    <tr><td class="file">enabled</td><td>true</td><td>关掉后不注册工具</td></tr>
+    <tr><td class="file">promptEnabled</td><td>true</td><td>是否注入「唱歌规则」系统提示</td></tr>
+    <tr><td class="file">rvcRoot</td><td>&lt;RVC_ROOT&gt;（自动探测，可配置）</td><td>RVC 根目录（models / applio / venv312 都在下面）⚠️</td></tr>
+    <tr><td class="file">python / applioDir / ffmpeg</td><td>由 rvcRoot 推导</td><td>RVC 的 Python、Applio 目录、ffmpeg 路径，一般不用改</td></tr>
+    <tr><td class="file">model</td><td>Paimon</td><td>音色模型名（内置 Paimon / DaFeiYu / Ying）</td></tr>
+    <tr><td class="file">models</td><td>三个内置项</td><td><code>{ 名称: { pth, index, targetF0 } }</code>，可覆写或新增</td></tr>
+    <tr><td class="file">pitch / autoPitch</td><td>9 / true</td><td>变调半音；autoPitch 打开时按原唱音高自动计算，pitch 仅作兜底</td></tr>
+    <tr><td class="file">indexRate / protect / timbre</td><td>0.45 / 0.5 / 1.0</td><td>RVC 参数：检索比例、清辅音保护、共振峰</td></tr>
+    <tr><td class="file">accompanimentGain</td><td>0.45</td><td>混音时伴奏相对人声的音量</td></tr>
+    <tr><td class="file">defaultSeconds / maxSeconds</td><td>30 / 45</td><td>默认与最长片段（微信语音条上限 60 秒，留余量）</td></tr>
+    <tr><td class="file">workDir</td><td>&lt;rvcRoot&gt;/songs/qqmusic</td><td>下载与中间文件缓存，按 songmid 分目录</td></tr>
+    <tr><td class="file">workspace / hookUrl</td><td>WeChatAgent 工作区 / 127.0.0.1:30001</td><td>微信会话映射、token 与语音发送 hook</td></tr>
+    <tr><td class="file">authEnabled / cookieFile</td><td>true / ~/.dsh/qqmusic/cookie.json</td><td>是否使用会员登录态</td></tr>
+    <tr><td class="file">minMatchScore</td><td>30</td><td>歌名匹配低于该分数视为“没找到”（QQ 音乐搜索很模糊，防乱唱）</td></tr>
+    <tr><td class="file">autoSingEnabled / autoSingCooldownMs</td><td>true / 90000</td><td>微信端模型不调用工具时宿主自动唱；每会话冷却</td></tr>
+    <tr><td class="file">voiceFallbackEnabled / notFoundVoiceText</td><td>true / 我不知道你说的歌怎么唱哦</td><td>找不到歌时的语音道歉</td></tr>
+    <tr><td class="file">fallbackToOriginal</td><td>true</td><td>翻唱阶段失败时退化为原声片段，保证有声音</td></tr>
+  </table>
+</section>
+
+<!-- ============================ 7 微信教程 ============================ -->
+<section class="section">
+  <h2>7 · 使用教程 · 微信端</h2>
+  <h3>7.1 两个工具</h3>
+  <table>
+    <tr><th style="width:22%">工具</th><th>参数</th><th>作用</th></tr>
+    <tr><td class="file">sing_song</td><td><code>keyword</code>（歌名或“歌手 歌名”）、
+      <code>mode</code>（cover/original/acapella）、<code>seconds</code>（8~45）、<code>start</code>（从第几秒起）</td>
+      <td>唱一段并发成微信语音条，返回一句话总结（歌名、起始秒、时长、音色、变调、耗时）</td></tr>
+    <tr><td class="file">qq_music_search</td><td><code>keyword</code>、<code>limit</code></td>
+      <td>搜歌返回候选（歌名/歌手/时长/是否免费可播），用于不确定点哪首时</td></tr>
+  </table>
+
+  <h3>7.2 触发规则（已放宽）</h3>
+  <p>只要消息里同时出现「<b>唱</b>」和一个歌名，就算点歌，例如：</p>
+  <ul>
+    <li>「唱首起风了」「给我唱一段稻香」「你会唱七里香吗」「来一个晴天听听」「唱个孤勇者」</li>
+    <li>「唱两句」→ 自动给 10~15 秒；「唱一整段 / 多唱点」→ 40~45 秒</li>
+    <li>「放一段×× / 听原唱」→ 原声片段；「清唱」→ 无伴奏</li>
+  </ul>
+  <p>私聊和群聊都支持；群聊里她被 @ 或模型判断值得接话时触发，一轮最多一首、不刷屏。</p>
+
+  <h3>7.3 自动兜底（为什么需要它）</h3>
+  <p>
+    长期存在的群会话里，模型会从旧历史里养成“群里唱不了/发不了语音”的习惯，即使系统提示要求调用工具，
+    它也可能只回一句“哼两句”。插件因此在 <code>session/event</code> 上兜底：
+    收到「唱 + 歌名」后，如果这一轮模型没有调用 <code>sing_song</code>，<b>宿主自己把这首歌唱完并发出去</b>。
+    每会话 90 秒冷却，提取不到像歌名的词不会乱发。
+  </p>
+
+  <h3>7.4 找不到歌时</h3>
+  <p>QQ 音乐里确实没有或解析不到时，插件会自动用她的声音（Edge TTS）发一条语音：
+  「我不知道你说的歌怎么唱哦」；然后你只回一句简短文字即可，不要重复道歉或再发语音。</p>
+
+  <h3>7.5 发送目标</h3>
+  <p>只会发到<b>当前 DSH 会话绑定的微信聊天</b>：会话 id → WeChatAgent 会话映射 → 真实 wxid/chatroom，
+  再交给本机 hook。会话没有绑定微信时工具会明确报错。</p>
+</section>
+
+<!-- ============================ 8 QQ 教程 ============================ -->
+<section class="section">
+  <h2>8 · 使用教程 · QQ 端</h2>
+  <p>
+    QQ 上的机器人跑在另一个 DSH 插件里（<code>dsh-xingzhudafeiyu-home</code>，状态目录
+    <code>~/.dsh/qq-fish</code>），有自己的一整套回复与语音通道（OneBot record → NapCat 转码）。
+    它没有对外扩展钩子，所以用“前面插一条点歌快速路径”的方式接入：
+  </p>
+  <h3>8.1 安装补丁</h3>
+  <pre>node tools/patch-qqfish.mjs --check   # 先看是否已打补丁
+node tools/patch-qqfish.mjs           # 打补丁（自动备份 engine.mjs）
+node tools/patch-qqfish.mjs --remove  # 需要时还原</pre>
+  <p>打完后重启 DSH，日志 <code>~/.dsh/qq-fish/voice.log</code> 会出现
+  <code>sing start / sing sent / sing failed</code>。</p>
+  <h3>8.2 行为</h3>
+  <ul>
+    <li>消息里出现「唱 + 歌名」（私聊或被 @）时，先回一句「好，等我一下，本小姐这就唱给你听～」；</li>
+    <li>随后本机渲染翻唱，把 mp3 以 <code>record</code> 语音条发出（NapCat 自己转码成 QQ 语音）；</li>
+    <li>找不到歌 → 用她自己的 TTS 说「我不知道你说的歌怎么唱哦」；</li>
+    <li>任何一步失败 → 自动退回原来的文字回复，不影响正常聊天。</li>
+  </ul>
+  <h3>8.3 限制</h3>
+  <ul>
+    <li>节流沿用 qq-fish 自己的 <code>voiceMinGapSec</code>（默认 60 秒/会话），防刷屏；</li>
+    <li>依赖已安装的本插件（<code>&lt;DSH_HOME&gt;/dsh-qqmusic-plugin</code>），找不到时自动跳过；</li>
+    <li>qq-fish 插件升级/重装会覆盖补丁，重新跑一次 <code>patch-qqfish.mjs</code> 即可；</li>
+    <li>补丁按固定锚点插入，脚本会做存在性校验；失败时不会改动原文件。</li>
+  </ul>
+</section>
+
+<!-- ============================ 9 会员登录 ============================ -->
+<section class="section">
+  <h2>9 · QQ 音乐会员登录</h2>
+  <p>
+    匿名请求只能听免费歌；登录后会员歌与 320k 音源才可用。登录态保存在
+    <code>~/.dsh/qqmusic/cookie.json</code>，插件每次请求自动带上（改 cookie 不需要重启）。
+    三种接入方式任选其一：
+  </p>
+  <h3>方式 A · 零操作（推荐）</h3>
+  <p>本机 QQ 音乐 Windows 客户端处于登录状态时，直接从进程内存里提取它的网页会话（uin + qqmusic_key）：</p>
+  <pre>node tools/lift-cookie.mjs          # 提取并保存
+node tools/lift-cookie.mjs --check  # 只看保存了什么
+node tools/qq-status.mjs            # 验证会员音源是否可用</pre>
+  <h3>方式 B · 扫码登录（QQ 账号）</h3>
+  <pre>node tools/qq-login.mjs</pre>
+  <p>生成二维码（<code>&lt;插件目录&gt;/.qr/qqmusic-qr.png</code>，约 2 分钟有效），
+  用手机 QQ 扫码并在手机上点「确认登录」，脚本自动换取 <code>qqmusic_key</code> 并保存。</p>
+  <h3>方式 C · 手动 cookie</h3>
+  <pre>node tools/qq-status.mjs --cookie "qqmusic_uin=...;qqmusic_key=..." --save</pre>
+  <p>从浏览器登录 <code>y.qq.com</code> 后，控制台执行
+  <code>document.cookie</code>，筛出 <code>qqmusic_uin</code> 与 <code>qqmusic_key</code> 即可。</p>
+  <h3>验证会员归属</h3>
+  <p><code>qq-status.mjs</code> 会用该 cookie 实际解析并下载一首“会员专属”歌曲：</p>
+  <ul>
+    <li>成功 → 这个账号可以播放会员/高音质音源 ✅</li>
+    <li>失败 → 账号不是会员，或登录态不完整 ❌</li>
+  </ul>
+  <div class="note">
+    <b>小知识：</b>QQ 音乐里微信登录与 QQ 登录的资产不互通。cookie 里带
+    <code>wxopenid</code> / <code>tmeLoginType=2</code> 表示微信账号，带 QQ 号则是 QQ 账号；
+    用 <code>qq-status</code> 实测“能不能下会员歌”最可靠。
+  </div>
+  <h3>退出登录</h3>
+  <pre>node tools/qq-login.mjs --clear</pre>
+</section>
+
+<!-- ============================ 10 排错 ============================ -->
+<section class="section">
+  <h2>10 · 运维与排错</h2>
+  <h3>10.1 日志位置</h3>
+  <table>
+    <tr><th style="width:34%">日志</th><th>内容</th></tr>
+    <tr><td class="file">~/.dsh/qqmusic/qqmusic.log</td><td>搜索、下载、分轨、变调、转换、混音、SILK、发送、自动兜底</td></tr>
+    <tr><td class="file">~/.dsh/qq-fish/voice.log</td><td>QQ 侧：<code>sing start / sing sent / sing failed</code> 与 TTS 记录</td></tr>
+    <tr><td class="file">~/.dsh/wechatagent-voice/voice.log</td><td>微信语音插件：提示词注入、语音发送</td></tr>
+    <tr><td>数据缓存</td><td><code>&lt;rvcRoot&gt;/songs/qqmusic/&lt;songmid&gt;/</code>（song.mp3、分段 wav、cover、mix、pcm、mp3）</td></tr>
+  </table>
+
+  <h3>10.2 常见问题</h3>
+  <table>
+    <tr><th style="width:30%">现象</th><th>排查 / 处理</th></tr>
+    <tr><td>微信里她不唱，只回文字</td><td>确认重启过 DSH；看 qqmusic.log 有没有 <code>autosing: ... request</code>；
+      自动兜底触发后会先文字后语音，语音可能晚 30~90 秒到达</td></tr>
+    <tr><td>语音特别短（如 5~6 秒）</td><td>旧版本的并发截断问题，已修复：同曲渲染加锁 + 缓存按真实时长校验 +
+      时长不足自动重渲。仍出现请贴日志，核对 <code>sing: silk … 6s</code> 行</td></tr>
+    <tr><td>QQ 群里只回“哼两句”</td><td>补丁没打或没重启：<code>patch-qqfish.mjs --check</code>；
+      重启后 voice.log 应有 <code>sing start</code></td></tr>
+    <tr><td>找不到歌 / 会员歌失败</td><td>先 <code>qq-status.mjs</code> 验证会员；免费档下会员歌会走免费版本或报错；
+      歌名太模糊时会被相似度阈值拦下（<code>minMatchScore</code>）</td></tr>
+    <tr><td>RVC 音色转换卡住很久</td><td>numba 缓存目录不可写时会死循环：插件已通过
+      <code>NUMBA_CACHE_DIR</code> 指向可写目录规避；手动跑脚本时也要设置</td></tr>
+    <tr><td>发语音 400 / 发送失败</td><td>本机 hook 只接受
+      <code>&lt;workspace&gt;/state/voice/outgoing/*.silk</code>；检查 WeChatAgent 是否运行、token 是否可读</td></tr>
+    <tr><td>“这个会话没有绑定微信聊天”</td><td>先在微信里给机器人发一条消息（打开会话窗口），再点歌</td></tr>
+    <tr><td>第一次点歌特别慢</td><td>正常：下载 + GPU 分轨 + RVC 首次约 40~90 秒；同一首第二次走缓存会快得多</td></tr>
+  </table>
+
+  <h3>10.3 已修复的关键坑</h3>
+  <ul>
+    <li><b>并发截断（语音只有 6 秒）</b>：多个群/QQ 同时点同一首歌时，两条流水线抢同一个中间文件，
+      后启动的读到了写了一半的 PCM。修复：同曲渲染互斥锁 + 缓存按“秒数×字节率”校验 + 时长不足自动重渲。</li>
+    <li><b>numba 缓存死循环</b>：librosa/numba 默认把编译缓存写进 venv 的 <code>__pycache__</code>，
+      在受限环境下不可写会忙等。修复：所有 Python 调用统一设置 <code>NUMBA_CACHE_DIR</code> 到可写目录。</li>
+    <li><b>大群“唱不了”习惯</b>：模型被群历史带偏，不调用工具。修复：提示词硬规则 + 宿主自动兜底。</li>
+    <li><b>会员歌优先级</b>：早期会把免费翻唱版排在原唱前面；修复：有会员时优先原唱/母带。</li>
+  </ul>
+</section>
+
+<!-- ============================ 11 测试 ============================ -->
+<section class="section">
+  <h2>11 · 测试与验证</h2>
+  <pre>cd dsh-qqmusic-plugin
+
+# 纯本地测试（不需要 GPU）
+node test/unit.test.mjs
+node test/apply.test.mjs
+node test/autosing.test.mjs
+
+# 联网/GPU 联调
+QQMUSIC_NETWORK_TEST=1 node test/unit.test.mjs         # 加联网搜索用例
+node test/notfound.test.mjs --send                      # 找不到歌→真发语音道歉
+node tools/live-sing.mjs --keyword "稻香" --mode cover --seconds 20
+node tools/live-sing.mjs --keyword "起风了" --send --chat wechat:private:&lt;id&gt;
+QQMUSIC_SPAWN_INHERIT=1 node test/concurrent-render.test.mjs  # 并发截断回归</pre>
+  <div class="tip">
+    <b>受限终端下调试：</b>如果当前 shell 无法给子进程创建管道（EPERM），设置
+    <code>QQMUSIC_SPAWN_INHERIT=1</code> 让 ffmpeg/Python 直接继承控制台输出即可。
+  </div>
+</section>
+
+<!-- ============================ 12 安全限制 ============================ -->
+<section class="section">
+  <h2>12 · 安全、隐私与已知限制</h2>
+  <h3>隐私</h3>
+  <ul>
+    <li>会员 cookie 只保存在本机 <code>~/.dsh/qqmusic/cookie.json</code>，不上传任何服务器；</li>
+    <li>内存提取工具只读取本机 QQ 音乐客户端进程内存，不写对方程序；建议只在本人机器使用；</li>
+    <li>聊天记录与中间音频都在本机缓存目录，可随时整目录删除。</li>
+  </ul>
+  <h3>版权与使用边界</h3>
+  <ul>
+    <li>音色模型是外部资产：本插件不训练、不分发模型，请使用你有权使用的音色；</li>
+    <li>翻唱作品仅供个人学习娱乐，不要用于冒充他人、诈骗、伪造或商业侵权；</li>
+    <li>QQ 音乐接口是非官方网页接口，仅用于本机个人使用，接口稳定性和合规性自行把握。</li>
+  </ul>
+  <h3>已知限制</h3>
+  <ul>
+    <li>Windows 专属：内存提取、WeChatAgent hook、NapCat 桥都依赖本机环境；</li>
+    <li>需要 NVIDIA GPU（8GB 显存级）与可用的 RVC 环境，纯 CPU 会很慢；</li>
+    <li>微信语音条最长 60 秒，默认 30 秒、上限 45 秒；</li>
+    <li>会员歌受版权/专辑购买限制，个别歌即使有会员也解析不到；</li>
+    <li>QQ 侧补丁依赖 <code>dsh-xingzhudafeiyu-home</code> 当前版本的文件结构，升级后需重新打补丁。</li>
+  </ul>
+  <h3>通用版（本仓库）已做的处理</h3>
+    <ul>
+      <li><b>路径自动化</b>：<code>rvcRoot</code>、WeChatAgent 工作区、语音插件目录、cookie 位置全部自动探测，
+        也都能在配置里覆盖；探测不到只告警，不阻止插件挂载。</li>
+      <li><b>无个人数据</b>：没有写死账号、群号、聊天号或本机路径；示例聊天号用占位符。</li>
+      <li><b>仓库规范</b>：<code>LICENSE</code>（MIT）、<code>SECURITY.md</code>、<code>.gitignore</code>、
+        package 元数据与发布前检查清单（见 <code>FILES.md</code>）。</li>
+      <li><b>QQ 补丁更稳</b>：目标插件版本校验，锚点不匹配时拒绝写入（原文件保持不动），自动备份与 <code>--remove</code>。</li>
+      <li><b>Windows 专属能力</b>：内存提取、微信 hook 在代码与文档中明确标注；非 Windows 下对应命令直接给出提示，
+        核心翻唱流水线本身与平台无关。</li>
+    </ul>
+</section>
+
+<!-- ============================ 附录 ============================ -->
+<section class="section">
+  <h2>附录 A · 文件速查表</h2>
+  <table>
+    <tr><th style="width:34%">路径</th><th>一句话作用</th></tr>
+    <tr><td class="file">index.mjs</td><td>插件入口：注册工具、提示词、策略、自动兜底</td></tr>
+    <tr><td class="file">package.json</td><td>包声明 + silk-wasm 依赖</td></tr>
+    <tr><td class="file">README.md / FILES.md</td><td>说明文档 / 文件清单</td></tr>
+    <tr><td class="file">src/qqmusic.mjs</td><td>QQ 音乐搜索/取地址/下载/歌词</td></tr>
+    <tr><td class="file">src/qqauth.mjs</td><td>会员登录态读写</td></tr>
+    <tr><td class="file">src/singing.mjs</td><td>翻唱流水线（核心）</td></tr>
+    <tr><td class="file">src/media.mjs</td><td>ffmpeg/Python 封装</td></tr>
+    <tr><td class="file">src/voice.mjs</td><td>PCM→微信 SILK</td></tr>
+    <tr><td class="file">src/wechat.mjs</td><td>会话→wxid→hook 发语音</td></tr>
+    <tr><td class="file">src/voice-fallback.mjs</td><td>找不到歌时借 TTS 道歉</td></tr>
+    <tr><td class="file">src/autosing.mjs</td><td>微信端自动兜底</td></tr>
+    <tr><td class="file">src/log.mjs</td><td>日志</td></tr>
+    <tr><td class="file">python/separate.py</td><td>人声/伴奏分离</td></tr>
+    <tr><td class="file">python/convert.py</td><td>RVC 音色转换</td></tr>
+    <tr><td class="file">python/f0.py</td><td>音高检测（自动变调）</td></tr>
+    <tr><td class="file">tools/install.mjs</td><td>安装进 DSH profile</td></tr>
+    <tr><td class="file">tools/lift-cookie.mjs</td><td>从客户端内存提取会员登录态</td></tr>
+    <tr><td class="file">tools/qq-lift-cookie.ps1</td><td>内存扫描 PowerShell 实现</td></tr>
+    <tr><td class="file">tools/QqMemScan.cs</td><td>内存扫描 C# 辅助</td></tr>
+    <tr><td class="file">tools/qq-login.mjs</td><td>扫码登录（QQ 账号）</td></tr>
+    <tr><td class="file">tools/qq-status.mjs</td><td>验证会员音源</td></tr>
+    <tr><td class="file">tools/live-sing.mjs</td><td>联调脚本（可直发）</td></tr>
+    <tr><td class="file">tools/patch-qqfish.mjs</td><td>给 QQ 端插件打点歌补丁</td></tr>
+    <tr><td class="file">tools/qqfish-sing.mjs</td><td>QQ 补丁的 <code>lib/sing.mjs</code> 模板</td></tr>
+    <tr><td class="file">test/unit.test.mjs</td><td>纯函数单测</td></tr>
+    <tr><td class="file">test/apply.test.mjs</td><td>插件挂载测试</td></tr>
+    <tr><td class="file">test/autosing.test.mjs</td><td>自动兜底状态机</td></tr>
+    <tr><td class="file">test/notfound.test.mjs</td><td>语音道歉链路</td></tr>
+    <tr><td class="file">test/concurrent-render.test.mjs</td><td>并发截断回归</td></tr>
+  </table>
+  <footer class="sign">dsh-qqmusic-plugin · 使用手册 · 2026-10-28</footer>
+</section>
+
+</body>
+</html>
+
+
+
+
+
